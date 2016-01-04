@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian
+                http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+    <engine>
+        <property name="deploymentExportPath">target/</property>
+    </engine>
+    <!--
+    <extension qualifier="webdriver">
+        <property name="browser">firefox</property>
+    </extension>
+    -->
+    <container qualifier="wls" default="true">
+        <configuration>
+            <property name="adminUrl">t3://localhost:7001</property>
+            <property name="adminUserName">admin</property>
+            <property name="adminPassword">weblogic1213</property>
+            <property name="wlHome">/Users/angelmiralles/Desarrollo/Servidores/wls12130/wlserver</property>
+            <property name="target">myserver</property>
+        </configuration>
+    </container>
+</arquillian>

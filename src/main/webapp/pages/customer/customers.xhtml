@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/facelets/template.xhtml">
+	
+    <ui:define name="headpage">
+            <ui:include src="/facelets/head.xhtml"></ui:include>
+    </ui:define>
+    
+    <ui:define name="bodypage">
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true" />
+
+            <p:dataTable id="tbl" var="customer" value="#{customersBean.customers}" selectionMode="single" 
+                         selection="#{customersBean.selectedCustomer}" rowKey="#{customer.id}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                         paginator="true" rows="10">
+                <p:column headerText="Id">
+                    <h:outputText value="#{customer.id}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{customer.name}" />
+                </p:column>
+
+                <p:column headerText="Correo">
+                    <h:outputText value="#{customer.email}" />
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton action="#{customersBean.showCustomer()}" value="Ver" ajax="false"></p:commandButton>
+                    <p:commandButton action="customer" value="Nuevo" ajax="false" immediate="true"/>
+                </f:facet>    
+            </p:dataTable>
+
+            <!--
+            <h:commandLink>
+                <p:outputLabel value="Excel"/>
+                <p:dataExporter type="xls" target="tbl" fileName="cars" pageOnly="true"/>
+            </h:commandLink>
+            -->
+        </h:form>
+            
+    </ui:define>
+    
+    <ui:define name="footpage">
+            <ui:include src="/facelets/foot.xhtml"></ui:include>
+    </ui:define>
+
+</ui:composition>

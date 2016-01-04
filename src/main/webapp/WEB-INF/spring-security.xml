@@ -1,0 +1,44 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans" 
+             xmlns:p="http://www.springframework.org/schema/p"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+    
+    
+    <http auto-config="true">
+    	<intercept-url pattern="/faces/pages/customer/*" access="ROLE_USER" />
+        
+        <form-login login-page="/faces/pages/login/login.xhtml" 
+                    authentication-failure-url="/faces/pages/login/login.xhtml"  
+                    default-target-url="/faces/pages/login/login.xhtml" 
+                    authentication-failure-handler-ref="autenticacionFailure"/>
+    </http>
+    
+    <authentication-manager>
+    	<authentication-provider user-service-ref='bbddProvider'>
+            <password-encoder hash="sha"/>
+    	</authentication-provider>
+    </authentication-manager>
+	
+    <beans:bean id="bbddProvider" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="mysqlds"/>
+        <beans:property name="usersByUsernameQuery" 
+                        value="SELECT u.username, u.password, 1 as enabled
+                               FROM User u
+                               WHERE u.username=?"/>
+        <beans:property name="authoritiesByUsernameQuery" 
+                        value="SELECT u.username as username, p.permission as authority 
+                               FROM User u, Permission p
+                               WHERE u.permission = p.id and u.username=?"/>
+    </beans:bean>
+    
+    <beans:bean id="autenticacionFailure" class="org.sas.stic.javaee7demo.business.security.boundary.AuthenticationFailure"></beans:bean>
+    
+    <beans:bean id="mysqlds" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <beans:property name="jndiName" value="jdbc/myDatasource"/>
+    </beans:bean>
+    
+</beans:beans>

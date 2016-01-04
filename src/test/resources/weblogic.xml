@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wls:weblogic-web-app xmlns:wls="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app
+                                          http://xmlns.oracle.com/weblogic/weblogic-web-app/1.7/weblogic-web-app.xsd">
+
+    <!-- WLS 12.1.3 JSF IMPLEMENTATION -->
+    <wls:library-ref>
+        <library-name>jsf</library-name>
+        <specification-version>2.0</specification-version>
+        <exact-match>false</exact-match>
+    </wls:library-ref>
+
+    <!-- WLS 12.1.3 JAX-RS IMPLEMENTATION -->
+   <wls:library-ref>
+        <library-name>jax-rs</library-name>
+        <specification-version>2.0</specification-version>
+        <exact-match>false</exact-match>
+    </wls:library-ref>
+    
+</wls:weblogic-web-app>

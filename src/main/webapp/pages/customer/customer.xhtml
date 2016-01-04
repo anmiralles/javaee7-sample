@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/facelets/template.xhtml">
+	
+    <ui:define name="headpage">
+            <ui:include src="/facelets/head.xhtml"></ui:include>
+    </ui:define>
+    
+    <ui:define name="bodypage">
+        <h:form>
+            <h2>Registro de Clientes</h2>
+            <p>Ejemplo de validaciones definidas en modelo</p>
+            <h:panelGrid columns="3" >
+                <p:outputLabel for="name" value="Nombre:"/>
+                <p:inputText id="name" value="#{customersBean.selectedCustomer.name}"/>
+                <p:message for="name" styleClass="invalid"/>
+                
+                <p:outputLabel for="address" value="Direccion:"/>
+                <p:inputText id="address" value="#{customersBean.selectedCustomer.address}"/>
+                <p:message for="address" styleClass="invalid"/>
+                
+                <p:outputLabel for="email" value="Correo"/>
+                <p:inputText id="email" value="#{customersBean.selectedCustomer.email}"/>
+                <p:message for="email" styleClass="invalid"/>
+                
+                <p:outputLabel for="phone" value="Telefono"/>
+                <p:inputText id="phone" value="#{customersBean.selectedCustomer.phone}"/>
+                <p:message for="phone" styleClass="invalid"/>
+                
+                <p:outputLabel for="cc" value="Codigo"/>
+                <p:inputText id="cc" value="#{customersBean.selectedCustomer.ccNumber}"/>
+                <p:message for="cc" styleClass="invalid"/>
+                
+                <p:outputLabel for="city" value="Ciudad"/>
+                <p:inputText id="city" value="#{customersBean.selectedCustomer.cityRegion}"/>
+                <p:message for="city" styleClass="invalid"/>
+            </h:panelGrid>
+            
+            <h:inputHidden value="#{customersBean.selectedCustomer.id}"/>
+            
+            <br/><br/>
+            <p:commandButton action="customers" value="Volver" ajax="false" immediate="true"/>
+            <p:commandButton action="#{customersBean.register}" value="Guardar" ajax="false"/>
+        </h:form>
+    </ui:define>
+    
+    <ui:define name="footpage">
+            <ui:include src="/facelets/foot.xhtml"></ui:include>
+    </ui:define>
+
+</ui:composition>

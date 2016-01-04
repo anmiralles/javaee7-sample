@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html">
+    
+    <h:head>
+	<f:facet name="first">
+            <meta content='text/html; charset=ISO-8859-1' http-equiv="Content-Type"/>
+            <title>javaee7demo</title>
+        </f:facet>
+
+        <!-- Cargamos javascript y hoja de estilos 
+        <h:outputStylesheet library="css" name="estilos.css" />
+        <h:outputScript library="scripts" name="scripts.js"/>
+        -->
+    </h:head>
+    
+    <h:body>
+        
+        <!-- MENSAJES -->
+        <p:growl id="growl" showDetail="false" life="6000"/>
+        
+        <h2>#{msg.usuario_aut_titulo}</h2>
+        
+        <p:spacer height="15"/>
+        
+        <h:form id="loginForm" prependId="false">     
+            
+            <h:panelGrid border="0" cellpadding="5" cellspacing="0" columns="2" styleClass="porcen100"
+                         columnClasses="porcen5, porcen95">
+                
+                <h:outputLabel for="j_username" value="#{msg.usuario_aut_usuario}"/>
+                <p:inputText id="j_username" required="true" requiredMessage="#{msg.info_usuario_requerido}" size="25"/>
+                
+                <h:outputLabel for="j_password" value="#{msg.usuario_aut_contrasena}"/>
+                <p:password id="j_password" required="true" requiredMessage="#{msg.info_contrasena_requerido}" size="25"
+			           			 			 feedback="false"/>
+            </h:panelGrid>
+            
+            <p:spacer height="25"/>
+            
+            <h:panelGrid border="0" cellpadding="5" cellspacing="0" columns="2" styleClass="porcen100"
+                         columnClasses="porcen100">
+                <p:commandButton type="submit" id="login" ajax="false" 
+                                 action="#{loginBean.authentication}" value="#{msg.btn_entrar}"/>
+            </h:panelGrid>
+            
+            
+        </h:form>
+    </h:body>
+</html>
